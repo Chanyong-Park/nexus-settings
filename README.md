@@ -1,9 +1,7 @@
 # 개요
   - 시스템 환경 구성을 위한 hands-on 명령어
 
-
-
-| 종류 | 
-| --- |
-| [Nexus3](https://github.com/Chanyong-Park/system-settings/blob/main/nexus/README.md) |
-| [Jenkins]() |
+| 종류 | 개요 |
+| --- | --- |
+| [Nexus3](https://github.com/Chanyong-Park/system-settings/blob/main/nexus/README.md) | docker 컨테이너용 Nexus 설치 |
+| [Jenkins]() | docker 컨테이너용 Jenkins 설치 |
