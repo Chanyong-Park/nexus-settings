@@ -21,8 +21,8 @@ $ docker exec -it nexus /bin/sh
 (2) 브라우저에서 아래 url 입력
    http://localhost:8081 
    
-(3) 접속 후 admin / (초기비밀번호) 입력 후와 같이 admin / admin 으로 설정
-   admin / admin 으로 설정
+(3) 접속 후 admin / (초기비밀번호) 입력 후 아래와 같이 비밀번호 변경
+    - admin / admin 으로 설정
 
 (4) 익명 접근은 불가하도록 설정
 
