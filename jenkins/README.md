@@ -57,22 +57,35 @@ Login Succeeded
 pipeline {
     agent any
 
-    stages {
-        stage('Build Docker Image') {
-            steps {
-                sh '''
-                    echo "admin" | docker login localhost:5000 --username admin --password-stdin
-                '''
-            }
-        }
-        
+    stages {       
         stage('Checkout') {
             steps {
                 git branch: 'master', 
                     url: 'https://github.com/codecentric/springboot-sample-app.git'
             }
         }        
+        
+        stage('Build') {
+            steps {
+                sh '''
+                    #gradle wrapper                
+                    chmod +x gradlew
+                    ./gradlew clean build
+                '''
+            }
+        }
+
+        stage('upload Docker Image') {
+            steps {
+                sh '''
+                    # 도커 로그인
+                    echo "admin" | docker login localhost:5000 --username admin --password-stdin
+                    # 이미지 생성
+
+                    # 이미지 업로드
+                '''
+            }
+        }
     }
 }
-
 ```
