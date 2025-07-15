@@ -34,17 +34,45 @@ $ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 d3da98c7f8ee4030a3fa82886a21ce87    #설치에 따라 달라질 수 있음
 ```
 
-## Jenkins 환경설정
-### step by step
- - Unlock Jenkins: http://localhost:8082 접속 후 초기 비밀번호 입력
- - 기본 플러그인 설치
- - 관리자 계정 생성
- - 접속 URL 설정
- - 추가 플러그인 설치
-   pipeline, docker
+## Jenkins
+### 환경설정 step by step
+- Unlock Jenkins: http://localhost:8082 접속 후 초기 비밀번호 입력
+- 기본 플러그인 설치
+- 관리자 계정 생성
+- 접속 URL 설정
+- 추가 플러그인 설치
+  pipeline, docker
+
 ```
 $ docker login localhost:5000 # 컨테이너 안에서도 localhost로 해야 함
 Username: 접속계정
 Password: 접속비밀번호
 Login Succeeded
+```
+
+### Jenkins item 생성
+- pipeline 선택
+
+``` script
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                    echo "admin" | docker login localhost:5000 --username admin --password-stdin
+                '''
+            }
+        }
+        
+        stage('Checkout') {
+            steps {
+                git branch: 'master', 
+                    url: 'https://github.com/codecentric/springboot-sample-app.git'
+            }
+        }        
+    }
+}
+
 ```
